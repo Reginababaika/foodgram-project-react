@@ -8,11 +8,7 @@ class Command(BaseCommand):
         with open('data/ingredients.csv', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile)
             next(reader)
-            ingredients = [
-             Ingredient(
-             name=row[0],
-             measurement_unit=row[1],
-             )
-             for row in reader
-            ]
+            ingredients = [Ingredient(name=row[0],
+                                      measurement_unit=row[1],)
+                                      for row in reader]
             Ingredient.objects.bulk_create(ingredients)

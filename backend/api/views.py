@@ -84,7 +84,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     @action(
         detail=False,
-        methods=['get',],
+        methods=['get', ],
         permission_classes=(permissions.IsAuthenticated,)
     )
     def favorites(self, request):
@@ -98,7 +98,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     @action(
         detail=False,
-        methods=['get',],
+        methods=['get', ],
         permission_classes=(permissions.IsAuthenticated,)
     )
     def download_shopping_cart(self, request):
@@ -107,17 +107,17 @@ class RecipeViewSet(viewsets.ModelViewSet):
         ).values(
             'ingredients__name',
             'ingredients__measurement_unit'
-        ).annotate(amount_sum=Sum('ingredient_recipes__amount'))
+        ).annotate(amount=Sum('ingredient_recipes__amount'))
         shopping_list = []
         for ingredient in ingredients_list:
             shopping_list.append(
-             f'{ingredient["ingredients__name"]} - {ingredient["amount_sum"]}'
-             f'{ingredient["ingredients__measurement_unit"]} \n')
+                f'{ingredient["ingredients__name"]} - {ingredient["amount"]}'
+                f'{ingredient["ingredients__measurement_unit"]} \n')
 
         response = HttpResponse(shopping_list,
                                 'Content-Type: text/plain')
         response['Content-Disposition'] = ('attachment; '
-                                       'filename="shopping_list.txt"')
+                                           'filename="shopping_list.txt"')
         return response
 
 
@@ -130,7 +130,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @action(
         detail=False,
-        methods=['get',],
+        methods=['get', ],
         permission_classes=(permissions.IsAuthenticated,)
     )
     def me(self, request):
@@ -140,7 +140,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
     @action(
         detail=False,
-        methods=['get',],
+        methods=['get', ],
         permission_classes=(permissions.IsAuthenticated,)
     )
     def subscriptions(self, request):

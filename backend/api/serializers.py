@@ -268,9 +268,8 @@ class SubscribeSerializer(serializers.ModelSerializer):
         ]
 
     def validate(self, value):
-        if Subscribe.objects.filter(
-            user=self.context.get('request').user,
-            following=value).exists():
+        if Subscribe.objects.filter(user=self.context.get('request').user,
+                                    following=value).exists():
             raise serializers.ValidationError({
                 'Вы уже подписаны!'
             })
@@ -295,9 +294,8 @@ class FavoriteSerializer(serializers.ModelSerializer):
         ]
 
     def validate(self, value):
-        if Favorite.objects.filter(
-            user=self.context.get('request').user,
-            recipe=value).exists():
+        if Favorite.objects.filter(user=self.context.get('request').user,
+                                   recipe=value).exists():
             raise serializers.ValidationError({
                 'Рецепт уже в избранном!'
             })
