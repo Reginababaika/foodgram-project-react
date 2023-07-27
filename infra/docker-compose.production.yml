@@ -14,18 +14,14 @@ services:
     env_file:
       - ../.env
   backend:
-    build:
-      context: ../backend
-      dockerfile: Dockerfile
+    image: reginababaika/foodgram_backend
     env_file:
       - ../.env
     volumes:
       - static_value:/var/html/static/
       - media_value:/app/media/
   frontend:
-    build:
-      context: ../frontend
-      dockerfile: Dockerfile
+    image: reginababaika/foodgram_frontend
     volumes:
       - ../frontend/:/app/result_build/
   nginx:
