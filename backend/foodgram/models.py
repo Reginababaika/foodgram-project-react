@@ -46,7 +46,7 @@ class Recipe(models.Model):
     author = models.ForeignKey(
         User,
         related_name='recipes',
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         null=True,
         verbose_name='Автор',
     )
@@ -97,7 +97,7 @@ class RecipeIngredients(models.Model):
     ingredient = models.ForeignKey(
         to=Ingredient,
         related_name='ingredient_recipes',
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         verbose_name='Ингредиент'
     )
     amount = models.PositiveSmallIntegerField(
