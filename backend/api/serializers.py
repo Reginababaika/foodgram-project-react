@@ -24,7 +24,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     def get_is_subscribed(self, obj):
         if self.context.get('request'):
-            user = self.context.get('request').user.id
+            user = self.context.get('request').user
             if user.is_anonymous:
                 return False
             return Subscribe.objects.filter(user=user,
@@ -115,7 +115,7 @@ class GetRecipeSerializer(serializers.ModelSerializer):
 
     def get_is_favorited(self, obj):
         if self.context.get('request'):
-            request_user = self.context.get('request').user.id
+            request_user = self.context.get('request').user
             if request_user.is_anonymous:
                 return False
             return Favorite.objects.filter(user=request_user,
@@ -124,7 +124,7 @@ class GetRecipeSerializer(serializers.ModelSerializer):
 
     def get_is_in_shopping_cart(self, obj):
         if self.context.get('request'):
-            request_user = self.context.get('request').user.id
+            request_user = self.context.get('request').user
             if request_user.is_anonymous:
                 return False
             return ShoppingCart.objects.filter(user=request_user,
@@ -244,7 +244,7 @@ class SubscriptionSerializer(serializers.ModelSerializer):
 
     def get_is_subscribed(self, obj):
         if self.context.get('request'):
-            user = self.context.get('request').user.id
+            user = self.context.get('request').user
             if user.is_anonymous:
                 return False
             return Subscribe.objects.filter(
@@ -290,7 +290,7 @@ class FavoriteSerializer(serializers.ModelSerializer):
         model = Favorite
         fields = ('user', 'recipe')
         validators = [
-            
+
             serializers.UniqueTogetherValidator(
                 queryset=Subscribe.objects.all(),
                 fields=('user', 'recipe')
