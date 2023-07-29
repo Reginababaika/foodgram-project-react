@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework import permissions, filters
+from djoser.views import UserViewSet
 
 from foodgram.models import (Ingredient, Tag, Recipe,
                              ShoppingCart, Favorite, RecipeIngredients)
@@ -121,7 +122,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         return response
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class CustomUserViewSet(UserViewSet):
     permission_classes = [permissions.AllowAny, ]
     queryset = User.objects.all()
     serializer_class = UserSerializer

@@ -16,7 +16,7 @@ Including another URLconf
 from rest_framework import routers
 from django.urls import include, path
 from djoser.views import UserViewSet as DjoserViewSet
-from .views import RecipeViewSet, TagViewSet, UserViewSet, IngredientViewSet
+from .views import RecipeViewSet, TagViewSet, CustomUserViewSet, IngredientViewSet
 from .views import SubscribeViewSet, ShoppingCartViewSet, FavoriteViewSet
 
 
@@ -25,7 +25,7 @@ app_name = 'api'
 router = routers.DefaultRouter()
 router.register('recipes', RecipeViewSet)
 router.register('tags', TagViewSet)
-router.register('users', UserViewSet)
+router.register('users', CustomUserViewSet)
 router.register(r'users/(?P<user_id>\d+)/subscribe',
                 SubscribeViewSet, basename='subscribe')
 router.register(r'recipes/(?P<recipe_id>\d+)/shopping_cart',
