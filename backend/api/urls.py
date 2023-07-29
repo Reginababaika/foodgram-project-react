@@ -16,7 +16,8 @@ Including another URLconf
 from rest_framework import routers
 from django.urls import include, path
 from djoser.views import UserViewSet as DjoserViewSet
-from .views import RecipeViewSet, TagViewSet, CustomUserViewSet, IngredientViewSet
+from .views import (RecipeViewSet, TagViewSet, 
+                    CustomUserViewSet, IngredientViewSet)
 from .views import SubscribeViewSet, ShoppingCartViewSet, FavoriteViewSet
 
 
